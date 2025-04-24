@@ -6,8 +6,9 @@ import {
 	DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
 import { useLocation, Location } from '@/components/context/LocationContext';
+import clsx from 'clsx';
 
-const LocationSelector = () => {
+const LocationSelector = ({ className = '' }) => {
 	const { setLocation } = useLocation();
 
 	return (
@@ -15,7 +16,10 @@ const LocationSelector = () => {
 			<DropdownMenuTrigger asChild>
 				<Button
 					variant="link"
-					className="text-xs uppercase px-0 h-auto hover:cursor-pointer"
+					className={clsx(
+						'text-xs uppercase px-0 h-auto hover:cursor-pointer hover:text-secondary',
+						className
+					)}
 					aria-label="Change location"
 				>
 					Change Location

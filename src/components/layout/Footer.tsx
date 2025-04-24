@@ -11,7 +11,7 @@ export default function Footer() {
 	];
 
 	return (
-		<footer className="w-full bg-foreground text-background py-4 mt-auto">
+		<footer className="w-full bg-foreground text-background py-4 mt-auto z-1">
 			<div className="max-w-5xl mx-auto px-4">
 				<nav aria-label="Footer navigation">
 					<ul className="flex justify-evenly w-full">

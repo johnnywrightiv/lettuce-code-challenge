@@ -4,22 +4,16 @@ import Image from 'next/image';
 import { FaFacebookF, FaTwitter, FaInstagram } from 'react-icons/fa';
 import Navbar from '@/components/layout/Navbar';
 import ThemeToggle from '@/components/ThemeToggle';
-import { Button } from '@/components/ui/button';
-import {
-	DropdownMenu,
-	DropdownMenuContent,
-	DropdownMenuItem,
-	DropdownMenuTrigger,
-} from '@/components/ui/dropdown-menu';
 import Link from 'next/link';
 import { useLocation } from '@/components/context/LocationContext';
+import LocationSelector from '../LocationSelector';
 
 export default function Header() {
-	const { location, setLocation } = useLocation();
+	const { location } = useLocation();
 
 	return (
 		<header
-			className="w-screen shadow-xs shadow-secondary fixed bg-background"
+			className="w-screen shadow-xs shadow-secondary fixed bg-background z-20"
 			role="banner"
 		>
 			<div
@@ -54,7 +48,7 @@ export default function Header() {
 						aria-label="Twitter"
 						target="_blank"
 						rel="noopener noreferrer"
-						className="hover:scale-110"
+						className="hover:scale-110 hover:text-secondary"
 					>
 						<FaTwitter className="h-5 w-5" aria-hidden="true" />
 					</a>
@@ -63,7 +57,7 @@ export default function Header() {
 						aria-label="Instagram"
 						target="_blank"
 						rel="noopener noreferrer"
-						className="hover:scale-110"
+						className="hover:scale-110 hover:text-secondary"
 					>
 						<FaInstagram className="h-5 w-5" aria-hidden="true" />
 					</a>
@@ -72,7 +66,7 @@ export default function Header() {
 						aria-label="Facebook"
 						target="_blank"
 						rel="noopener noreferrer"
-						className="hover:scale-110"
+						className="hover:scale-110 hover:text-secondary"
 					>
 						<FaFacebookF className="h-5 w-5" aria-hidden="true" />
 					</a>
@@ -88,7 +82,7 @@ export default function Header() {
 								alt="Mon Ami Gabi Logo"
 								width={300}
 								height={40}
-								className="mx-auto"
+								className="mx-auto pt-4"
 								priority
 							/>
 						</h1>
@@ -101,33 +95,12 @@ export default function Header() {
 						<span className="font-[Baskervville] leading-tight">
 							{location}
 						</span>
-						<DropdownMenu>
-							<DropdownMenuTrigger asChild>
-								<Button
-									variant="link"
-									className="text-xs uppercase px-0 h-auto hover:cursor-pointer"
-									aria-label="Change location"
-								>
-									Change Location
-								</Button>
-							</DropdownMenuTrigger>
-							<DropdownMenuContent align="end">
-								<DropdownMenuItem onClick={() => setLocation('Bethesda')}>
-									Bethesda
-								</DropdownMenuItem>
-								<DropdownMenuItem onClick={() => setLocation('Chicago')}>
-									Chicago
-								</DropdownMenuItem>
-								<DropdownMenuItem onClick={() => setLocation('Las Vegas')}>
-									Las Vegas
-								</DropdownMenuItem>
-							</DropdownMenuContent>
-						</DropdownMenu>
+						<LocationSelector className="text-foreground pr-2" />
 					</div>
 				</div>
 			</div>
 
-			<nav className="mt-2" aria-label="Main navigation">
+			<nav className="mt-4" aria-label="Main navigation">
 				<Navbar />
 			</nav>
 		</header>

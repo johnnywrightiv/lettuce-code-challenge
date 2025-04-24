@@ -5,7 +5,7 @@ import Reservations from '@/components/sections/Reservations';
 
 export default function Home() {
 	return (
-		<div className="space-y-8 pt-36 h-screen">
+		<div className="space-y-8 pt-36 w-full">
 			<About />
 			<Reservations />
 			<Events />

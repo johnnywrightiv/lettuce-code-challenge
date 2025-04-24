@@ -156,3 +156,15 @@
 		@apply mb-1 text-base;
 	}
 }
+
+@layer utilities {
+	.text-light {
+		color: var(--light);
+	}
+	.text-dark {
+		color: var(--dark);
+	}
+	.text-maroon {
+		color: var(--maroon);
+	}
+}
