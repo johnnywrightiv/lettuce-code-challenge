@@ -5,7 +5,7 @@ import {
 	DropdownMenuItem,
 	DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
-import { useLocation, Location } from '@/components/context/LocationContext';
+import { useLocation, Location } from '@/components/context/LocationProvider';
 import clsx from 'clsx';
 
 const LocationSelector = ({ className = '' }) => {

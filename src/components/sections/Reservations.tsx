@@ -181,7 +181,7 @@ import { Calendar as CalendarIcon } from 'lucide-react';
 import {
 	useLocation,
 	locationData,
-} from '@/components/context/LocationContext';
+} from '@/components/context/LocationProvider';
 
 export default function Reservations() {
 	const { location } = useLocation();

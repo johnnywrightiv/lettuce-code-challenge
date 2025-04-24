@@ -5,7 +5,7 @@ import { FaFacebookF, FaTwitter, FaInstagram } from 'react-icons/fa';
 import Navbar from '@/components/layout/Navbar';
 import ThemeToggle from '@/components/ThemeToggle';
 import Link from 'next/link';
-import { useLocation } from '@/components/context/LocationContext';
+import { useLocation } from '@/components/context/LocationProvider';
 import LocationSelector from '../LocationSelector';
 
 export default function Header() {

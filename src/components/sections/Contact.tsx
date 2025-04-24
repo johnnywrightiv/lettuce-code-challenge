@@ -3,7 +3,7 @@ import { FaEnvelope, FaPhoneAlt, FaMapMarkerAlt } from 'react-icons/fa';
 import {
 	useLocation,
 	locationData,
-} from '@/components/context/LocationContext';
+} from '@/components/context/LocationProvider';
 import LocationSelector from '@/components/LocationSelector';
 import Image from 'next/image';
 
@@ -12,30 +12,30 @@ export default function Contact() {
 	const { email, phone, address, hours } = locationData[location];
 
 	return (
-		<section id="contact" className="bg-primary text-light">
-			<div className="container mx-auto max-w-screen-xl pt-18">
-				<div className="grid grid-cols-2 gap-12 items-start">
-					{/* Image */}
-					<div className="relative w-full h-[400px]">
-						<div className="absolute -left-16 -bottom-16 w-[550px] h-[550px]">
-							<Image
-								src="/assets/Charcuterie.png"
-								alt="Charcuterie plate"
-								fill
-								className="object-contain transform -rotate-90"
-								priority
-							/>
-						</div>
-					</div>
+		<section id="contact" className="bg-primary text-light relative">
+			{/* Anchored Image inside section */}
+			<div className="absolute bottom-0 -left-8 sm:w-[300px] sm:h-[300px] md:w-[325px] md:h-[325px]">
+				<Image
+					src="/assets/Charcuterie.png"
+					alt="Charcuterie plate"
+					fill
+					className="object-cover -rotate-90 overflow-visible"
+					priority
+				/>
+			</div>
+
+			<div className="container mx-auto max-w-screen-xl relative z-10">
+				<div className="grid sm:grid-cols-2 gap-12 items-start justify-center px-4 pt-8 sm:pt-20">
+					{/* Spacer */}
+					<div className="block" />
 
 					{/* Contact Info */}
-					<div className="space-y-8">
-						<div>
-							<h2 className="mb-0">Mon Ami Gabi {location}</h2>
-							<LocationSelector className="text-light italic" />
-						</div>
+					<div className="space-y-6 mb-8">
+						<h2 className="mb-0 text-xl md:text-3xl">
+							Mon Ami Gabi {location}
+						</h2>
+						<LocationSelector className="text-light italic" />
 
-						{/* Hours */}
 						<div>
 							<h3 className="sr-only">Hours</h3>
 							<table className="w-full">
@@ -50,8 +50,7 @@ export default function Contact() {
 							</table>
 						</div>
 
-						{/* Contact */}
-						<div className="space-y-4">
+						<div className="space-y-4 ">
 							<a
 								href={`mailto:${email}`}
 								className="flex items-center space-x-3 hover:text-secondary transition-colors"
