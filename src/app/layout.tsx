@@ -1,7 +1,8 @@
 import { Metadata } from 'next';
 import '@/styles/globals.css';
 import { Toaster } from '@/components/ui/sonner';
-import { ThemeProvider } from '@/components/ThemeProvider';
+import { ThemeProvider } from '@/components/context/ThemeProvider';
+import { LocationProvider } from '@/components/context/LocationContext';
 import { Outfit, Baskervville } from 'next/font/google';
 import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
@@ -34,12 +35,14 @@ export default function RootLayout({
 				className={`${outfit.variable} ${baskervville.variable} min-h-screen flex flex-col antialiased`}
 			>
 				<ThemeProvider>
-					<Header />
-					<main className="flex-1 flex justify-center items-center">
-						{children}
-					</main>
-					<Footer />
-					<Toaster />
+					<LocationProvider>
+						<Header />
+						<main className="flex-1 flex justify-center items-center">
+							{children}
+						</main>
+						<Footer />
+						<Toaster />
+					</LocationProvider>
 				</ThemeProvider>
 			</body>
 		</html>

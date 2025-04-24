@@ -1,7 +1,6 @@
 'use client';
 
 import Image from 'next/image';
-import { useState } from 'react';
 import { FaFacebookF, FaTwitter, FaInstagram } from 'react-icons/fa';
 import Navbar from '@/components/layout/Navbar';
 import ThemeToggle from '@/components/ThemeToggle';
@@ -13,19 +12,16 @@ import {
 	DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
 import Link from 'next/link';
+import { useLocation } from '@/components/context/LocationContext';
 
 export default function Header() {
-	const [location, setLocation] = useState<
-		'Chicago' | 'Bethesda' | 'Las Vegas'
-	>('Chicago');
-
-	const handleLocationChange = (newLocation: typeof location) => {
-		setLocation(newLocation);
-	};
+	const { location, setLocation } = useLocation();
 
 	return (
-		<header className="w-full shadow-sm" role="banner">
-			{/* Top Row */}
+		<header
+			className="w-screen shadow-xs shadow-secondary fixed bg-background"
+			role="banner"
+		>
 			<div
 				className="grid grid-cols-3 items-center px-4 py-2"
 				aria-label="Top Header Row"
@@ -39,7 +35,7 @@ export default function Header() {
 					<div className="w-1 h-1 rounded-full bg-secondary" />
 				</div>
 
-				{/* Right Border*/}
+				{/* Right Border */}
 				<div
 					className="absolute top-16 right-0 flex items-center justify-end"
 					aria-hidden="true"
@@ -48,7 +44,7 @@ export default function Header() {
 					<div className="w-40 border-b border-secondary" />
 				</div>
 
-				{/* Social Links */}
+				{/* Social */}
 				<div
 					aria-label="Social media"
 					className="flex gap-4 justify-start items-center"
@@ -58,6 +54,7 @@ export default function Header() {
 						aria-label="Twitter"
 						target="_blank"
 						rel="noopener noreferrer"
+						className="hover:scale-110"
 					>
 						<FaTwitter className="h-5 w-5" aria-hidden="true" />
 					</a>
@@ -66,6 +63,7 @@ export default function Header() {
 						aria-label="Instagram"
 						target="_blank"
 						rel="noopener noreferrer"
+						className="hover:scale-110"
 					>
 						<FaInstagram className="h-5 w-5" aria-hidden="true" />
 					</a>
@@ -74,11 +72,10 @@ export default function Header() {
 						aria-label="Facebook"
 						target="_blank"
 						rel="noopener noreferrer"
+						className="hover:scale-110"
 					>
 						<FaFacebookF className="h-5 w-5" aria-hidden="true" />
 					</a>
-
-					{/* OPTIONAL: Theme Toggle */}
 					<ThemeToggle />
 				</div>
 
@@ -98,7 +95,7 @@ export default function Header() {
 					</Link>
 				</div>
 
-				{/* Location Selector */}
+				{/* Location */}
 				<div className="flex justify-end">
 					<div className="flex flex-col items-center text-right">
 						<span className="font-[Baskervville] leading-tight">
@@ -115,19 +112,13 @@ export default function Header() {
 								</Button>
 							</DropdownMenuTrigger>
 							<DropdownMenuContent align="end">
-								<DropdownMenuItem
-									onClick={() => handleLocationChange('Bethesda')}
-								>
+								<DropdownMenuItem onClick={() => setLocation('Bethesda')}>
 									Bethesda
 								</DropdownMenuItem>
-								<DropdownMenuItem
-									onClick={() => handleLocationChange('Chicago')}
-								>
+								<DropdownMenuItem onClick={() => setLocation('Chicago')}>
 									Chicago
 								</DropdownMenuItem>
-								<DropdownMenuItem
-									onClick={() => handleLocationChange('Las Vegas')}
-								>
+								<DropdownMenuItem onClick={() => setLocation('Las Vegas')}>
 									Las Vegas
 								</DropdownMenuItem>
 							</DropdownMenuContent>
@@ -136,7 +127,6 @@ export default function Header() {
 				</div>
 			</div>
 
-			{/* Navbar Row */}
 			<nav className="mt-2" aria-label="Main navigation">
 				<Navbar />
 			</nav>

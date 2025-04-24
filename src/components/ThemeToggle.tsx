@@ -27,7 +27,7 @@ export default function ThemeToggle(): ReactNode {
 
 	return (
 		<DropdownMenu>
-			<DropdownMenuTrigger asChild>
+			<DropdownMenuTrigger asChild className="hover:scale-110">
 				<Button
 					variant="link"
 					size="icon"
