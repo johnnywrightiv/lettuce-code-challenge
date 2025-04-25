@@ -14,12 +14,13 @@ export default function Contact() {
 	return (
 		<section id="contact" className="bg-primary text-light relative">
 			{/* Anchored Image inside section */}
-			<div className="absolute bottom-0 -left-8 sm:w-[300px] sm:h-[300px] md:w-[325px] md:h-[325px]">
+			<div className="absolute bottom-0 -left-8">
 				<Image
 					src="/assets/Charcuterie.png"
 					alt="Charcuterie plate"
-					fill
-					className="object-cover -rotate-90 overflow-visible"
+					height={400}
+					width={400}
+					className="object-cover overflow-visible "
 					priority
 				/>
 			</div>
@@ -30,7 +31,7 @@ export default function Contact() {
 					<div className="block" />
 
 					{/* Contact Info */}
-					<div className="space-y-6 mb-8">
+					<div className="space-y-6 mb-8 bg-black/60 p-2 sm:bg-transparent">
 						<h2 className="mb-0 text-xl md:text-3xl">
 							Mon Ami Gabi {location}
 						</h2>
