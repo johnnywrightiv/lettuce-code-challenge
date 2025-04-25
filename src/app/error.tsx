@@ -6,7 +6,7 @@ import React from 'react';
 
 const Error = ({ error, reset }: { error: Error; reset: () => void }) => {
 	return (
-		<div className="bg-destructive text-white w-full fixed top-0 mb-2 p-4 text-end space-y-4">
+		<div className="bg-destructive text-white w-full fixed top-0 mb-2 p-4 text-end space-y-4 mt-30 pt-8">
 			<h1>Oops, something went wrong!</h1>
 			<p>
 				<strong>Error:</strong> {error.message}
