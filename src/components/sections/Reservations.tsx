@@ -59,17 +59,60 @@ export default function Reservations() {
 
 	const handleSubmit = (e: React.FormEvent) => {
 		e.preventDefault();
+
+		if (!people || people === '0') {
+			toast.error('Please select the number of people.');
+			return;
+		}
+
+		if (!date) {
+			toast.error('Please select a date.');
+			return;
+		}
+
+		if (!time) {
+			toast.error('Please select a time.');
+			return;
+		}
+
+		const now = new Date();
+
+		// Allow today or future dates, but times today must be in the future
+		if (date.toDateString() === now.toDateString()) {
+			const [hourStr, minuteStrWithAMPM] = time.split(':');
+			const minutes = parseInt(minuteStrWithAMPM, 10);
+			const isPM = time.toLowerCase().includes('pm');
+			let hours = parseInt(hourStr, 10);
+			if (isPM && hours !== 12) hours += 12;
+			if (!isPM && hours === 12) hours = 0;
+
+			const selectedDateTime = new Date(now);
+			selectedDateTime.setHours(hours, minutes, 0, 0);
+
+			if (selectedDateTime < now) {
+				toast.error(
+					'Selected time is in the past. Please choose a future time.'
+				);
+				return;
+			}
+		} else if (date < now) {
+			// For other days, date must not be in the past
+			toast.error('Selected date is in the past. Please choose a future date.');
+			return;
+		}
+
 		const details = {
 			people,
-			date: date ? format(date, 'MMM dd, yyyy') : '',
+			date: format(date, 'MMM dd, yyyy'),
 			time,
 		};
+
 		console.log(details);
 		toast.success('Searching for tables...', {
 			description: `${people} people · ${details.date} · ${time} (${location})`,
 		});
 
-		// Reset form fields after submission
+		// Reset
 		setPeople('2');
 		setDate(new Date());
 		setTime(timeSlots.length > 0 ? timeSlots[0] : '7:00pm');
