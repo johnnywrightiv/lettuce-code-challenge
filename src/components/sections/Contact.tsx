@@ -1,9 +1,6 @@
 'use client';
 import { FaEnvelope, FaPhoneAlt, FaMapMarkerAlt } from 'react-icons/fa';
-import {
-	useLocation,
-	locationData,
-} from '@/components/context/LocationProvider';
+import { useLocation, locationData } from '@/context/LocationProvider';
 import LocationSelector from '@/components/LocationSelector';
 import Image from 'next/image';
 
@@ -20,7 +17,7 @@ export default function Contact() {
 					alt="Charcuterie plate"
 					height={400}
 					width={400}
-					className="object-cover overflow-visible "
+					className="object-cover"
 					priority
 				/>
 			</div>

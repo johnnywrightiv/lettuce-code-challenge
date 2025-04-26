@@ -18,10 +18,7 @@ import {
 import { toast } from 'sonner';
 import { format, parse } from 'date-fns';
 import { Calendar as CalendarIcon } from 'lucide-react';
-import {
-	useLocation,
-	locationData,
-} from '@/components/context/LocationProvider';
+import { useLocation, locationData } from '@/context/LocationProvider';
 
 export default function Reservations() {
 	const { location } = useLocation();
@@ -69,7 +66,7 @@ export default function Reservations() {
 		};
 		console.log(details);
 		toast.success('Searching for tables...', {
-			description: `${people} people · ${details.date} · ${time}`,
+			description: `${people} people · ${details.date} · ${time} (${location})`,
 		});
 
 		// Reset form fields after submission

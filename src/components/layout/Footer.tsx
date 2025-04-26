@@ -14,9 +14,9 @@ export default function Footer() {
 		<footer className="w-full bg-foreground dark:bg-background dark:text-foreground text-background py-4 mt-auto z-1">
 			<div className="max-w-5xl mx-auto px-4">
 				<nav aria-label="Footer navigation">
-					<ul className="flex justify-evenly w-full">
+					<ul className="flex flex-wrap justify-evenly w-full">
 						{links.map((link) => (
-							<li key={link.href}>
+							<li key={link.href} className="px-2 py-1 sm:py-0">
 								<a
 									href={link.href}
 									target="_blank"

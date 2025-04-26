@@ -1,8 +1,8 @@
 import { Metadata } from 'next';
 import '@/styles/globals.css';
 import { Toaster } from '@/components/ui/sonner';
-import { ThemeProvider } from '@/components/context/ThemeProvider';
-import { LocationProvider } from '@/components/context/LocationProvider';
+import { ThemeProvider } from '@/context/ThemeProvider';
+import { LocationProvider } from '@/context/LocationProvider';
 import { Outfit, Baskervville } from 'next/font/google';
 import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';

@@ -3,7 +3,11 @@
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 
-export default function Navbar() {
+type NavbarProps = {
+	isMobile?: boolean;
+};
+
+export default function Navbar({ isMobile = false }: NavbarProps) {
 	const links = [
 		{ label: 'Reservations', href: '/reservations' },
 		{ label: 'Menu', href: '/menu' },
@@ -15,8 +19,26 @@ export default function Navbar() {
 		{ label: 'Gallery', href: '/gallery' },
 	];
 
+	if (isMobile) {
+		return (
+			<ul className="flex flex-col space-y-2">
+				{links.map((link) => (
+					<li key={link.href}>
+						<Button
+							asChild
+							variant="link"
+							className="text-sm w-full justify-start"
+						>
+							<Link href={link.href}>{link.label}</Link>
+						</Button>
+					</li>
+				))}
+			</ul>
+		);
+	}
+
 	return (
-		<ul className="flex justify-center space-x-2">
+		<ul className="flex justify-center flex-wrap space-x-2">
 			{links.map((link) => (
 				<li key={link.href}>
 					<Button asChild variant="link" className="text-sm">

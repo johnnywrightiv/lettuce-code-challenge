@@ -1,36 +1,40 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Lettuce Entertain You Code Challenge
 
-## Getting Started
+A responsive restaurant website built with Next.js, TypeScript, Tailwind CSS, and shadcn/ui components.
 
-First, run the development server:
+## Introduction
+
+This project recreates the provided Mon Ami Gabi restaurant design as a fully functional, responsive website that meets all specified requirements. It demonstrates implementation of a reservation form, dynamic events/contact sections with location filtering, and responsive design with accessibility compliance.
+
+## Setup Instructions
 
 ```bash
+# Clone the repository
+git clone https://github.com/johnnywrightiv/lettuce-code-challenge
+cd lettuce-code-challenge
+
+# Install dependencies
+npm install
+
+# Start development server
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Visit [http://localhost:3000](http://localhost:3000) in your browser to view the application.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Testing the Application
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+1. **Responsive Design**: Resize the browser or use Chrome DevTools to test mobile, tablet, and desktop layouts
+2. **Reservation Form**: Submit the reservation form to test form validation and UI feedback
+3. **Dynamic Location Data**: Get contact details, hours of operation, and reservation time slots based on city by using the location selector
+4. **Events Section**: Filter events by city using the filter buttons
+5. **Theme Toggle**: Switch between light and dark mode using the theme selector
+6. **Accessibility & Performance**: Test the application for accessibility compliance and performance using Lighthouse
 
-## Learn More
+## Key Features
 
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- **Responsive Design**: Adapts seamlessly to mobile, tablet, and desktop views
+- **Reservation Form**: Full validation with success notifications using toast sonner
+- **Events Section**: Fetches, filters and displays upcoming events with city filtering
+- **Light/Dark Mode**: Theme switching functionality with next-themes
+- **Location Context**: Context provider for location data shared across components
