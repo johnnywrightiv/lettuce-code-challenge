@@ -1,5 +1,7 @@
 # Lettuce Entertain You Code Challenge
 
+[![Vercel](https://img.shields.io/badge/Deployed%20on-Vercel-000?logo=vercel)](https://lettuce-code-challenge.vercel.app)
+
 A responsive restaurant website built with Next.js, TypeScript, Tailwind CSS, and shadcn/ui components.
 
 ## Introduction
