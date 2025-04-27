@@ -4,38 +4,40 @@ export default function About() {
 	return (
 		<section
 			id="about"
-			className="bg-white dark:bg-primary w-full mx-auto px-8 py-8"
+			className="bg-white dark:bg-black w-full mx-auto px-8 py-8"
 		>
 			<div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
 				{/* Image Gallery */}
 				<div className="grid grid-cols-2 grid-rows-2 gap-4">
-					<div className="row-span-1 self-end">
-						<Image
-							src="/assets/FarmersMarket_-2797.jpg"
-							alt="Fresh produce at Farmers Market"
-							width={600}
-							height={400}
-							className="rounded-lg shadow-xl object-cover"
-							priority
-						/>
+					<div className="row-span-1 self-end h-40 md:h-auto overflow-visible">
+						<div className="md:-ml-4 h-full">
+							<Image
+								src="/assets/FarmersMarket_-2797.jpg"
+								alt="Fresh produce at Farmers Market"
+								width={600}
+								height={400}
+								className="rounded-lg shadow-xl object-cover w-full h-full"
+								priority
+							/>
+						</div>
 					</div>
-					<div className="row-span-1">
+					<div className="row-span-1 h-40 mt-8 md:h-auto">
 						<Image
 							src="/assets/MAG-MushroomPasta-1578.jpg"
 							alt="Mushroom pasta dish"
 							width={600}
 							height={400}
-							className="rounded-lg shadow-xl object-cover"
+							className="rounded-lg shadow-xl object-cover object-bottom w-full h-full"
 							priority
 						/>
 					</div>
-					<div className="col-span-2 row-span-1 justify-self-end">
+					<div className="md:max-w-150 w-full md:w-auto col-span-2 row-span-1 justify-self-end h-48 md:h-auto">
 						<Image
 							src="/assets/MAG-382.jpg"
 							alt="Restaurant interior"
 							width={600}
 							height={400}
-							className="rounded-lg shadow-xl object-cover"
+							className="rounded-lg shadow-xl object-cover w-full h-full"
 							priority
 						/>
 					</div>

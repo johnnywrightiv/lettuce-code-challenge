@@ -215,7 +215,7 @@ export default function Reservations() {
 						src="/assets/MAG-Salmon_Anjali Pinto.jpg"
 						alt="Salmon dish by Anjali Pinto"
 						fill
-						className="rounded-lg shadow-xl object-cover"
+						className="shadow-xl object-cover"
 						priority
 					/>
 				</div>

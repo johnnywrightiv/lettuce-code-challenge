@@ -29,12 +29,12 @@ Visit [http://localhost:3000](http://localhost:3000) in your browser to view the
 3. **Dynamic Location Data**: Get contact details, hours of operation, and reservation time slots based on city by using the location selector
 4. **Events Section**: Filter events by city using the filter buttons
 5. **Theme Toggle**: Switch between light and dark mode using the theme selector
-6. **Accessibility & Performance**: Test the application for accessibility compliance and performance using Lighthouse
+6. **Accessibility & Performance**: Test for accessibility compliance and performance using Lighthouse
 
 ## Key Features
 
-- **Responsive Design**: Adapts seamlessly to mobile, tablet, and desktop views
-- **Reservation Form**: Full validation with success notifications using toast sonner
-- **Events Section**: Fetches, filters and displays upcoming events with city filtering
+- **Responsive Design**: Adapts to mobile, tablet, and desktop views
+- **Reservation Form**: Validation with success and error toast notifications using sonner
+- **Events Section**: Fetches and displays upcoming events with city filtering
 - **Light/Dark Mode**: Theme switching functionality with next-themes
 - **Location Context**: Context provider for location data shared across components

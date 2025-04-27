@@ -29,7 +29,7 @@ export default function ThemeToggle(): ReactNode {
 		<DropdownMenu>
 			<DropdownMenuTrigger
 				asChild
-				className="hover:scale-110 hover:text-secondary -ml-2"
+				className="hover:scale-110 hover:text-secondary ml-2"
 			>
 				<Button
 					variant="link"
