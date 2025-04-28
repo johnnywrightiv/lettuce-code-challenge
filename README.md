@@ -4,10 +4,6 @@
 
 A responsive restaurant website built with Next.js, TypeScript, Tailwind CSS, and shadcn/ui components.
 
-## Introduction
-
-This project recreates the provided Mon Ami Gabi restaurant design as a fully functional, responsive website that meets all specified requirements. It demonstrates implementation of a reservation form, dynamic events/contact sections with location filtering, and responsive design with accessibility compliance.
-
 ## Setup Instructions
 
 ```bash
