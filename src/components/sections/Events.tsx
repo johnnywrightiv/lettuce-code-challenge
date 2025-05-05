@@ -3,6 +3,7 @@
 import { useEffect, useState } from 'react';
 import { Button } from '@/components/ui/button';
 import Image from 'next/image';
+import { toast } from 'sonner';
 
 type EventType = {
   id: string;
@@ -26,31 +27,44 @@ export default function Events() {
 
   useEffect(() => {
     const fetchEvents = async () => {
-      const res = await fetch(
-        'https://abarestaurants-staging-401581158498.us-central1.run.app/wp-json/lettuce/events'
-      );
-      const data: EventType[] = await res.json();
+      try {
+        const res = await fetch(
+          'https://abarestaurants-staging-401581158498.us-central1.run.app/wp-json/lettuce/events'
+        );
 
-      const now = new Date();
+        if (!res.ok) {
+          throw new Error(`Failed to fetch events: ${res.status}`);
+        }
 
-      const futureEvents = data.filter(
-        (e) => e.date && new Date(e.date) >= now
-      );
+        const data: EventType[] = await res.json();
 
-      const undatedEvents = data.filter((e) => !e.date);
+        const now = new Date();
 
-      const sortedEvents = [
-        ...futureEvents.sort(
-          (a, b) => new Date(a.date!).getTime() - new Date(b.date!).getTime()
-        ),
-        ...undatedEvents,
-      ];
+        const futureEvents = data.filter(
+          (e) => e.date && new Date(e.date) >= now
+        );
 
-      setEvents(sortedEvents);
+        const undatedEvents = data.filter((e) => !e.date);
 
-      const citySet = new Set<string>();
-      data.forEach((e) => e.cities?.forEach((city) => citySet.add(city)));
-      setCities(Array.from(citySet));
+        const sortedEvents = [
+          ...futureEvents.sort(
+            (a, b) => new Date(a.date!).getTime() - new Date(b.date!).getTime()
+          ),
+          ...undatedEvents,
+        ];
+
+        setEvents(sortedEvents);
+
+        const citySet = new Set<string>();
+        data.forEach((e) => e.cities?.forEach((city) => citySet.add(city)));
+        setCities(Array.from(citySet));
+      } catch (error) {
+        console.error('Error fetching events:', error);
+        toast.error('Failed to load events', {
+          description:
+            error instanceof Error ? error.message : 'Unknown error occurred',
+        });
+      }
     };
 
     fetchEvents();

@@ -19,43 +19,68 @@ import { toast } from 'sonner';
 import { format, parse } from 'date-fns';
 import { Calendar as CalendarIcon } from 'lucide-react';
 import { useLocation, locationData } from '@/context/LocationProvider';
+import { useRef } from 'react';
 
 export default function Reservations() {
   const { location } = useLocation();
   const [date, setDate] = useState<Date | undefined>(new Date());
   const [people, setPeople] = useState('2');
-  const [time, setTime] = useState('7:00pm');
+  const [time, setTime] = useState('');
   const [timeSlots, setTimeSlots] = useState<string[]>([]);
+  const timeRef = useRef(time);
+  timeRef.current = time;
 
   // Generate time slots based on location hours
   useEffect(() => {
     const locationHours = locationData[location].hours;
-    // Get opening and closing times for the current day of week
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    const [_, timeRange] = locationHours[0];
-    const [openTime, closeTime] = timeRange.split(' - ');
 
-    // Parse the opening and closing times
-    const startTime = parse(openTime, 'h:mma', new Date());
-    const endTime = parse(closeTime, 'h:mma', new Date());
+    // Get the day of week string from the date
+    const dayOfWeek = date ? format(date, 'EEE') : 'Mon';
 
-    // Generate time slots in 30-minute increments
+    // Helper function to check if a day is in a range like 'Mon - Thu'
+    const isDayInRange = (day: string, range: string) => {
+      const [startDay, endDay] = range.split(' - ').map((d) => d.trim());
+      const daysOfWeek = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+      const startIdx = daysOfWeek.indexOf(startDay);
+      const endIdx = daysOfWeek.indexOf(endDay);
+      const dayIdx = daysOfWeek.indexOf(day);
+
+      // Return true if the day falls within the range
+      return startIdx <= dayIdx && dayIdx <= endIdx;
+    };
+
+    // Find all matching time ranges for the selected day
+    const matchedRanges = locationHours
+      .filter(([days]) => {
+        // If the day of the week is within a multi-day range, include it
+        if (days.includes(' - ')) {
+          return isDayInRange(dayOfWeek, days);
+        }
+        // Otherwise, check if the day is directly mentioned
+        return days.includes(dayOfWeek) || days === 'Daily';
+      })
+      .map(([, hours]) => hours);
+
     const slots: string[] = [];
-    const currentTime = new Date(startTime);
 
-    while (currentTime < endTime) {
-      slots.push(format(currentTime, 'h:mma'));
-      // Add 30 minutes
-      currentTime.setMinutes(currentTime.getMinutes() + 30);
-    }
+    matchedRanges.forEach((range) => {
+      const [openTime, closeTime] = range.split(' - ');
+      const startTime = parse(openTime, 'h:mma', new Date());
+      const endTime = parse(closeTime, 'h:mma', new Date());
+
+      const timeSlotIterator = new Date(startTime);
+      while (timeSlotIterator < endTime) {
+        slots.push(format(timeSlotIterator, 'h:mma'));
+        timeSlotIterator.setMinutes(timeSlotIterator.getMinutes() + 30);
+      }
+    });
 
     setTimeSlots(slots);
 
-    // Set default time to the first available slot
-    if (slots.length > 0 && !slots.includes(time)) {
+    if (slots.length > 0 && !slots.includes(timeRef.current)) {
       setTime(slots[0]);
     }
-  }, [location, time]);
+  }, [location, date]);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();

@@ -5,11 +5,16 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
-import { useLocation, Location } from '@/context/LocationProvider';
+import {
+  useLocation,
+  locationData,
+  Location,
+} from '@/context/LocationProvider';
 import clsx from 'clsx';
 
 const LocationSelector = ({ className = '' }) => {
   const { setLocation } = useLocation();
+  const availableLocations = Object.keys(locationData) as Location[];
 
   return (
     <DropdownMenu>
@@ -17,7 +22,7 @@ const LocationSelector = ({ className = '' }) => {
         <Button
           variant="link"
           className={clsx(
-            'text-xs uppercase px-0 h-auto hover:cursor-pointer hover:text-secondary',
+            'text-xs uppercase px-0 h-auto hover:cursor-pointer hover:text-secondary pr-4',
             className
           )}
           aria-label="Change location"
@@ -26,7 +31,7 @@ const LocationSelector = ({ className = '' }) => {
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end">
-        {['Bethesda', 'Chicago', 'Las Vegas'].map((loc) => (
+        {availableLocations.map((loc) => (
           <DropdownMenuItem
             key={loc}
             onClick={() => setLocation(loc as Location)}

@@ -79,7 +79,10 @@ export default function Header() {
   );
 
   return (
-    <header className="w-full fixed bg-white dark:bg-black z-20" role="banner">
+    <header
+      className="w-[100vw] fixed bg-white dark:bg-black z-20"
+      role="banner"
+    >
       <div
         className="grid grid-cols-3 md:grid-cols-3 items-center px-4 py-2"
         aria-label="Top Header Row"
